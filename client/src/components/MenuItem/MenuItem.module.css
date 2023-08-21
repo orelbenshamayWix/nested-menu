@@ -1,0 +1,60 @@
+.menu-item {
+  position: relative;
+  font-size: 20px;
+  padding: 5px;
+  background-color: #ffffff;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item a {
+  display: block;
+  font-size: inherit;
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu-item button {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  font-size: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+button span {
+  margin-left: 3px;
+}
+
+.menu-item > a,
+.menu-item button {
+  text-align: left;
+  padding: 0.7rem 1rem;
+}
+
+.menu-item a:hover,
+.menu-items button:hober {
+  background-color: #f2f2f2;
+}
+
+.down-arrow::after {
+  content: "";
+  display: inline-block;
+  margin-left: 0.28em;
+  vertical-align: 0.09em;
+  border-top: 0.42em solid;
+  border-right: 0.32em solid transparent;
+  border-left: 0.32em solid transparent;
+}
+
+.right-arrow {
+  margin-left: auto;
+}
