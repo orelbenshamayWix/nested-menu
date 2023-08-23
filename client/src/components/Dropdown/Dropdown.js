@@ -6,6 +6,7 @@ const Dropdown = (props) => {
   const [dropdownItem, setDropdownItem] = useState(null);
 
   const handleDropdownClick = (id) => {
+    props.closeContextMenu();
     if (id === dropdownItem) {
       setDropdownItem(null);
       return;
@@ -19,14 +20,18 @@ const Dropdown = (props) => {
         props.dropdown ? classesDropdown.show : ""
       } ${depthLevel > 1 ? classesDropdown["dropdown-submenu"] : ""}`}
     >
-      {props.submenus.map((submenu, index) => {
+      {props.children.map((child) => {
         return (
           <MenuItem
-            item={submenu}
-            key={index}
+            item={props.jsonData[child]}
+            key={child}
             depthLevel={depthLevel}
             handleDropdownClick={handleDropdownClick}
             dropdownItem={dropdownItem}
+            handleContextClick={props.handleContextClick}
+            jsonData={props.jsonData}
+            modalOpenHandler={props.modalOpenHandler}
+            closeContextMenu={props.closeContextMenu}
           />
         );
       })}

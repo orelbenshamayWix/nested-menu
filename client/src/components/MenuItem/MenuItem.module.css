@@ -1,4 +1,5 @@
 .menu-item {
+  cursor: pointer;
   position: relative;
   font-size: 20px;
   padding: 5px;
@@ -9,10 +10,10 @@
 
 .menu-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 10px 20px rgba(125, 97, 97, 0.2);
 }
 
-.menu-item a {
+.menu-item div {
   display: block;
   font-size: inherit;
   color: inherit;
@@ -34,13 +35,13 @@ button span {
   margin-left: 3px;
 }
 
-.menu-item > a,
+.menu-item > div,
 .menu-item button {
   text-align: left;
   padding: 0.7rem 1rem;
 }
 
-.menu-item a:hover,
+.menu-item div:hover,
 .menu-items button:hober {
   background-color: #f2f2f2;
 }
@@ -57,4 +58,27 @@ button span {
 
 .right-arrow {
   margin-left: auto;
+}
+
+.context-menu-wrap {
+  position: absolute;
+  cursor: pointer;
+}
+
+.context-menu {
+  list-style: none;
+  position: inherit;
+  box-shadow: 0 10px 15px -3px hwb(0 98% 2% / 0.815),
+    0 4px 6px -2px rgba(250, 247, 250, 0.735);
+  font-size: 0.875rem;
+  z-index: 9999;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  background-color: rgb(228, 226, 226);
+  border-radius: 0.2rem;
+  color: rgb(53, 50, 50);
+}
+
+.context-menu > .menu-item {
+  background-color: rgb(228, 226, 226);
 }

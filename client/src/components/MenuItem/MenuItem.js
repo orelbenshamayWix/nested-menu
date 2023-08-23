@@ -1,15 +1,30 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import classes from "./MenuItem.module.css";
 import Dropdown from "../Dropdown/Dropdown";
+import RightClickMenu from "../RightClickMenu/RightClickMenu";
 
 const MenuItem = (props) => {
-  const renderMenuItem = () => {
-    if (props.item.children) {
-      return (
+  const contextClickHandler = (e) => {
+    e.preventDefault();
+    props.handleContextClick(
+      {
+        x: e.clientX,
+        y: e.clientY - 100,
+      },
+      props.item.id
+    );
+  };
+
+  return (
+    <li className={classes["menu-item"]}>
+      {props.item.children ? (
         <Fragment>
           <button
             type="button"
             onClick={() => props.handleDropdownClick(props.item.id)}
+            onContextMenu={(e) => {
+              contextClickHandler(e);
+            }}
           >
             {props.item.title}
             {props.depthLevel > 0 ? (
@@ -19,19 +34,27 @@ const MenuItem = (props) => {
             )}
           </button>
           <Dropdown
-            submenus={props.item.children}
+            children={props.item.children}
             dropdown={props.dropdownItem === props.item.id}
             depthLevel={props.depthLevel}
             handleDropdownClick={props.handleDropdownClick}
+            handleContextClick={props.handleContextClick}
+            jsonData={props.jsonData}
+            modalOpenHandler={props.modalOpenHandler}
+            closeContextMenu={props.closeContextMenu}
           />
         </Fragment>
-      );
-    } else {
-      return <a>{props.item.title}</a>;
-    }
-  };
-
-  return <li className={classes["menu-item"]}>{renderMenuItem()}</li>;
+      ) : (
+        <div
+          onContextMenu={(e) => {
+            contextClickHandler(e);
+          }}
+        >
+          {props.item.title}
+        </div>
+      )}
+    </li>
+  );
 };
 
 export default MenuItem;
