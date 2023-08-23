@@ -15,9 +15,10 @@ const deleterHandlerRecursionAux = (id) => {
   }
   if (toBeDeleted.parent) {
     const parentId = toBeDeleted.parent;
-    menu[parentId].children = menu[parentId].children.filter(
-      (childId) => childId !== id
+    filteredChildren = menu[parentId].children.filter(
+      (childId) => childId != id
     );
+    menu[parentId].children = filteredChildren;
     if (menu[parentId].children.length === 0) {
       menu[parentId].children = null;
     }
@@ -56,7 +57,6 @@ router.post("/menu/", async (req, res) => {
 
 router.delete("/menu/:id", async (req, res) => {
   deleterHandlerRecursionAux(req.params.id);
-  console.log(menu);
   res.send({ menu });
 });
 
